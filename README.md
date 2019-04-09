@@ -1,17 +1,11 @@
-### Mockups
-https://app.moqups.com/thewraith476@hotmail.com/3RQZAxZkY9/edit/page/a8a2cbf23
-
-## Instructions on how I set up this project:
-
-### This installation and setup will take place on a Windows 7 machine.
-
-Start by installing composer. Composer's website recommends using their installer, so I will too. 
+## Instructions on how I set up this project
+Start by installing composer. Composer's website recommends using their installer. 
 
 Download Composer-Setup.exe and run it. Follow the wizard's instructions.
 
 Now create a symfony directory inside of wamp64's directory. Afterwords, the symfony path looks like this:
 
-### wamp64/www/public/symfony/
+### wamp64.1/www/public/symfony/
 
 Open your desired terminal and navigate to this newly created path. Type following command in the terminal:
 
