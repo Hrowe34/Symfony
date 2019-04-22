@@ -1,13 +1,4 @@
-![Create DB](https://github.com/Maze5656/237-Symfony/blob/lab7/public/uploads/createDatabase.png)
-![Query Dump](https://github.com/Maze5656/237-Symfony/blob/lab7/public/uploads/firstQueryDump.png)
-![Query Run](https://github.com/Maze5656/237-Symfony/blob/lab7/public/uploads/firstQueryRun.png)
-
-### Mockups
-https://app.moqups.com/thewraith476@hotmail.com/3RQZAxZkY9/edit/page/a8a2cbf23
-
 ## Instructions on how I set up this project:
-
-### This installation and setup will take place on a Windows 7 machine.
 
 Start by installing composer. Composer's website recommends using their installer, so I will too. 
 
