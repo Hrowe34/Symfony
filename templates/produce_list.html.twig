@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listing all Produce Items.{% endblock %}
+
+{% block body %}
+
+    <h1>All Produce Items</h1>
+
+    <div class="list-group">
+
+        {% for item in items %}
+
+            <a href="#" class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h4 class="list-group-item-heading">
+                        {{ item.Id }}.
+                        {{ item.name }} -
+                        {{ item.expirationDate is empty ? "No Date set!" : item.expirationDate|date('d/m/Y') }}
+                    </h4>
+                </div>
+            </a>
+        {% endfor %}
+
+        <h1>All Icon Names</h1>
+
+        {% for icon in iconNames %}
+
+        <a href="#" class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+                <h4 class="list-group-item-heading">
+                    {{ icon.iconName }}
+                </h4>
+            </div>
+        </a>
+
+        {% endfor %}
+
+    </div>
+{% endblock %}
