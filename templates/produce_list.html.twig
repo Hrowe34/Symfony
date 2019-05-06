@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Refrigerator{% endblock %}
+
+{% block body %}
+    <a class="btn btn-success" href="shopping-list">View My Shopping List</a>
+    <a class="btn btn-primary" href="../new-produce-item">Create New Produce Item</a>
+    <a class="btn btn-primary" href="../new-shopping-list-item">Create New Shopping List Item</a>
+
+    <h1>My Refrigerator</h1>
+    <img class="mt-4 mb-4" src="/uploads/refrig.jpg" style="height: 200px"; width="200px">
+
+    <div class="list-group">
+
+        {% if rItem is defined %}
+            {{ rItem.Id }}.
+            {{ rItem.name }} -
+            {{ rItem.expirationDate is empty ? "No Date set!" : rItem.expirationDate|date('d/m/Y') }}
+        {% endif %}
+
+        {% if items is defined %}
+            <ul class="list-unstyled list-group">
+                {% for item in items %}
+
+                        <div class="d-flex w-400 justify-content-between list-group-item">
+                            <h4 class="list-group-item-heading">
+                                <li id="{{ item.Id }}-list-item" style="padding: 0px 30px;">
+
+                                    <img style="height: 30px; width: 30px" src="/uploads/{{ item.icon.getIconImage() }}"/>
+                                     - {{ item.name }} :
+                                    {{ item.expirationDate is empty ? "No Date set!" : item.expirationDate|date('d/m/Y') }}
+                                    <a href="{{ path('edit_refItem', { id: item.Id }) }}">
+                                        <i class="fas fa-pencil-alt text-primary"></i>
+                                    </a>
+                                    <span data-url={{ path('delete_refItem', { id: item.Id }) }} id="{{ item.Id }}">
+                                        <i class="fas fa-trash-alt text-danger"></i>
+                                    </span>
+                                    <button data-url={{ path("ref_to_list", { id: item.Id }) }} id="{{ item.Id }}" class="btn btn-success">
+                                        Add To Shopping List
+                                    </button>
+                                </li>
+                            </h4>
+                        </div>
+
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    {% if iconNames is defined %}
+        <h1>All Icon Names</h1>
+
+        {% for icon in iconNames %}
+
+            <a href="#" class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <img src="/uploads/{{ icon.iconImage }}"/>
+                    <h4 class="list-group-item-heading">
+                        {{ icon.iconName }} <img src="/uploads/{{ icon.iconImage }}"/>
+                    </h4>
+                </div>
+            </a>
+
+        {% endfor %}
+    {% endif %}
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('ul li span').click(function(e) {
+                let item_id = $(this).attr('Id');
+
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'DELETE'
+                }).done(function() {
+                    $('#' + item_id + '-list-item').hide();
+                });
+            });
+
+            $('ul li button').click(function(e) {
+                let item_id = $(this).attr('Id');
+
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'PUT'
+                }).done(function() {
+                    $('#' + item_id + '-list-item').hide();
+                });
+            })
+        });
+    </script>
+{% endblock %}
